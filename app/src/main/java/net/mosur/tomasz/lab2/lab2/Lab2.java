@@ -26,17 +26,17 @@ import butterknife.ButterKnife;
 
 public class Lab2 extends AppCompatActivity implements View.OnClickListener{
 
-    private static final String PREFERENCES_NAME = "myPreferences";
-    private Button count_bmi_button;
+    static final String PREFERENCES_NAME = "myPreferences";
+    Button count_bmi_button;
     EditText weight_input;
     EditText height_input;
     TextView result_label;
     TextView result_msg;
-    Switch kg_unit_on;
-    boolean kg_unit_chosen;
+    Switch lb_unit_on;
+    boolean lb_unit_choosen;
     CountBMIForKgM bmiForKgM = new CountBMIForKgM();
     CountBMIForKgM bmiForLbFt = new CountBMIForLbFt();
-    private SharedPreferences preferences;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +44,15 @@ public class Lab2 extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_lab2);
 
         preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
-        kg_unit_chosen = true;
+        lb_unit_choosen = false;
         count_bmi_button = (Button)findViewById(R.id.bmi_calc_button);
         weight_input = (EditText)findViewById(R.id.input_weight_box);
         height_input = (EditText)findViewById(R.id.input_height_box);
         result_label = (TextView)findViewById(R.id.bmi_result);
-        kg_unit_on = (Switch)findViewById(R.id.unit_switch);
+        lb_unit_on = (Switch)findViewById(R.id.unit_switch);
         result_msg = (TextView)findViewById(R.id.bmi_result_msg);
 
-        kg_unit_on.setOnClickListener(this);
+        lb_unit_on.setOnClickListener(this);
         count_bmi_button.setOnClickListener(this);
         restoreData();
     }
@@ -73,18 +73,18 @@ public class Lab2 extends AppCompatActivity implements View.OnClickListener{
                 showToast(getString(R.string.wrong_input));
             }
         }
-        else if (v == kg_unit_on)
+        else if (v == lb_unit_on)
         {
-            kg_unit_chosen = !kg_unit_chosen;
-            switchStateChange();
+            lb_unit_choosen = !lb_unit_choosen;
+            switchStateUpdate();
 
         }
     }
 
-    private void switchStateChange() {
-        if(kg_unit_chosen) kg_unit_on.setText(R.string.unit_kg) ;
-        else{ kg_unit_on.setText(R.string.unit_lb);}
-        kg_unit_on.setChecked(!kg_unit_chosen);
+    private void switchStateUpdate() {
+        if(lb_unit_choosen) lb_unit_on.setText(R.string.unit_lb) ;
+        else{ lb_unit_on.setText(R.string.unit_kg);}
+        lb_unit_on.setChecked(lb_unit_choosen);
     }
 
     private void showResultLabel(Float result) {
@@ -95,9 +95,9 @@ public class Lab2 extends AppCompatActivity implements View.OnClickListener{
     private float getBmiResult(float height, float weight)
     {
         float result;
-        if(kg_unit_chosen) result= bmiForKgM.countBMI(weight, height);
+        if(lb_unit_choosen) result = bmiForLbFt.countBMI(weight, height);
         else {
-            result = bmiForLbFt.countBMI(weight, height);
+            result= bmiForKgM.countBMI(weight, height);
         }
         String resultformat = String.format(java.util.Locale.US, "%.2f", result);
         return Float.valueOf(resultformat);
@@ -174,16 +174,15 @@ public class Lab2 extends AppCompatActivity implements View.OnClickListener{
     public void onSaveInstanceState(Bundle savedInstanceState)
     {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putBoolean("kg_unit_chosen", kg_unit_chosen);
+        savedInstanceState.putBoolean("lb_unit_choosen", lb_unit_choosen);
         savedInstanceState.putString("result", result_label.getText().toString());
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        kg_unit_chosen = (boolean)savedInstanceState.get("kg_unit_chosen");
-        kg_unit_on.setChecked(!kg_unit_chosen); //if not checked then kg choosen
-        switchStateChange();
+        lb_unit_choosen = (boolean)savedInstanceState.get("lb_unit_choosen");
+        switchStateUpdate();
         String result = (String)savedInstanceState.get("result");
         if(!result.equals(""))
         {
@@ -198,14 +197,14 @@ public class Lab2 extends AppCompatActivity implements View.OnClickListener{
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         height_input.setText(sharedPref.getString("height",""));
         weight_input.setText(sharedPref.getString("weight",""));
-        kg_unit_chosen = sharedPref.getBoolean("kg_unit_chosen", true);
-        switchStateChange();
+        lb_unit_choosen = sharedPref.getBoolean("lb_unit_choosen", false);
+        switchStateUpdate();
     }
     private void saveData()
     {
         SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean("kg_unit_chosen", kg_unit_chosen);
+        editor.putBoolean("lb_unit_choosen", lb_unit_choosen);
         editor.putString("height", height_input.getText().toString());
         editor.putString("weight", weight_input.getText().toString());
         editor.commit();

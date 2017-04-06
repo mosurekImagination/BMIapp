@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KALKULATOR BMI</string>
+    <string name="app_name">Kalkulator BMI</string>
     <string name="welcome_msg">Oblicz swoje BMI:</string>
     <string name="input_weight">Podaj swoją wagę</string>
     <string name="input_height">Podaj swój wzrost</string>
@@ -22,7 +22,7 @@
     <string name="check_website">Sprawdź WWW:</string>
     <string name="bmi_notCalculated">Nie obliczono BMI</string>
     <string name="share_myBmiIs">Moje BMI to: </string>
-    <string name="app_footer">obliczono za pomocą aplikacji do Szczepanika</string>
+    <string name="app_footer">obliczono za pomocą aplikacji przygotowanej na SWiM</string>
 
 
 
