@@ -23,16 +23,17 @@ import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class Lab2 extends AppCompatActivity implements View.OnClickListener{
+public class Lab2 extends AppCompatActivity{
 
     static final String PREFERENCES_NAME = "myPreferences";
     Button count_bmi_button;
-    EditText weight_input;
+    @BindView(R.id.input_weight_box) EditText weight_input;         // TO GET KNOW HOW TO USE BUTTERKNIFE
+    @BindView(R.id.bmi_result) TextView result_label;
     EditText height_input;
-    TextView result_label;
+    @BindView(R.id.unit_switch) Switch lb_unit_on;
     TextView result_msg;
-    Switch lb_unit_on;
     boolean lb_unit_choosen;
     CountBMIForKgM bmiForKgM = new CountBMIForKgM();
     CountBMIForKgM bmiForLbFt = new CountBMIForLbFt();
@@ -46,38 +47,32 @@ public class Lab2 extends AppCompatActivity implements View.OnClickListener{
         preferences = getSharedPreferences(PREFERENCES_NAME, Activity.MODE_PRIVATE);
         lb_unit_choosen = false;
         count_bmi_button = (Button)findViewById(R.id.bmi_calc_button);
-        weight_input = (EditText)findViewById(R.id.input_weight_box);
         height_input = (EditText)findViewById(R.id.input_height_box);
-        result_label = (TextView)findViewById(R.id.bmi_result);
-        lb_unit_on = (Switch)findViewById(R.id.unit_switch);
         result_msg = (TextView)findViewById(R.id.bmi_result_msg);
 
-        lb_unit_on.setOnClickListener(this);
-        count_bmi_button.setOnClickListener(this);
+        ButterKnife.bind(this);
         restoreData();
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v == count_bmi_button)
-        {
-            try {
-                float weight = Float.valueOf(weight_input.getText().toString());
-                float height = Float.valueOf(height_input.getText().toString());
-                Float result = getBmiResult(height, weight);
-                showResultLabel(result);
-                changeBmiColor(result);
-            }
-            catch (Exception e) {
+    @OnClick(R.id.unit_switch)
+    public void submit() {
+        lb_unit_choosen = !lb_unit_choosen;
+        switchStateUpdate();
+    }
 
-                showToast(getString(R.string.wrong_input));
-            }
+    @OnClick(R.id.bmi_calc_button)
+    public void calcButtonClicked()
+    {
+        try {
+            float weight = Float.valueOf(weight_input.getText().toString());
+            float height = Float.valueOf(height_input.getText().toString());
+            Float result = getBmiResult(height, weight);
+            showResultLabel(result);
+            changeBmiColor(result);
         }
-        else if (v == lb_unit_on)
-        {
-            lb_unit_choosen = !lb_unit_choosen;
-            switchStateUpdate();
+        catch (Exception e) {
 
+            showToast(getString(R.string.wrong_input));
         }
     }
 
