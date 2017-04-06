@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/me"
+        android:id="@+id/me_image"
+        android:adjustViewBounds="true"/>
+    <TextView
+        android:layout_marginTop="40px"
+        android:textColor="#242666"
+        android:text="@string/about_author_header"
+        android:textSize="40sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_margin="20dp"
+        android:textColor="#242600"
+        android:textSize="15sp"
+        android:text="@string/about_author_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="viewStart" />
+
+    <TextView
+        android:layout_marginTop="20px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#242666"
+        android:text="@string/check_website"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/website_url_button"
+        android:layout_marginTop="10dp"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/website_url"
+        android:textAllCaps="false"
+        android:layout_marginBottom="20dp"/>
+</LinearLayout>
+</ScrollView>

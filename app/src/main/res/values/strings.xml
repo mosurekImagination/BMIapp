@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">KALKULATOR BMI</string>
+    <string name="welcome_msg">Oblicz swoje BMI:</string>
+    <string name="input_weight">Podaj swoją wagę</string>
+    <string name="input_height">Podaj swój wzrost</string>
+    <string name="bmi_msg">Twoje BMI to:</string>
+    <string name="unit_kg">Kg/m</string>
+    <string name="unit_lb">Lb/ft</string>
+    <string name="calculate_bmi">Oblicz</string>
+    <string name="bmi_calc_msg">Twoje BMI to:</string>
+    <string name="about_author">O Autorze</string>
+    <string name="save_data">Zapisz</string>
+    <string name="website_url">mosur.net</string>
+    <string name="social_share">Udostępnij</string>
+    <string name="wrong_input">Nieprawidłowe dane</string>
+    <string name="about_author_header">Tomekke</string>
+    <string name="about_author_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.</string>
+    <string name="check_website">Sprawdź WWW:</string>
+    <string name="bmi_notCalculated">Nie obliczono BMI</string>
+    <string name="share_myBmiIs">Moje BMI to: </string>
+    <string name="app_footer">obliczono za pomocą aplikacji do Szczepanika</string>
+
+
+
+</resources>
