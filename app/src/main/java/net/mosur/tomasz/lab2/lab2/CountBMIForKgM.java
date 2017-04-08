@@ -6,20 +6,20 @@ package net.mosur.tomasz.lab2.lab2;
 
 public class CountBMIForKgM implements ICountBMI {
     
-    static final float MinMass = 10f;
-    static final float MaxMass = 250f;
-    static final float MinHeigth = 0.5f;
-    static final float MaxMeigth = 2.5f;
+    static final float MINMASS = 10f;
+    static final float MAXMASS = 250f;
+    static final float MINGEIGHT = 0.5f;
+    static final float MAXHEIGHT = 2.5f;
     
     
     @Override
     public boolean isWeightValid(float weight) {
-        return weight >= MinMass && weight <= MaxMass;
+        return weight >= MINMASS && weight <= MAXMASS;
     }
 
     @Override
     public boolean isHeightValid(float height) {
-        return height >= MinHeigth && height <= MaxMeigth;
+        return height >= MINGEIGHT && height <= MAXHEIGHT;
     }
 
     boolean argsInvalid(float weight, float height)
